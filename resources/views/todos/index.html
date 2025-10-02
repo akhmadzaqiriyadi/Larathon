@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>All Todos</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    th {
+      background-color: #f4f4f4;
+      text-align: left;
+    }
+    td form {
+      display: inline;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>All Todos</h1>
+
+  <p><a href="/todos/create">+ Todo</a></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todos %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ todo.name }}</td>
+          <td>
+            <a href="/todos/{{ todo.id }}">View</a> |
+            <a href="/todos/{{ todo.id }}/edit">Edit</a> |
+            <form action="/todos/{{ todo.id }}" method="post" onsubmit="return confirmDelete(this);">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="3">Todo not found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script>
+    function confirmDelete(form) {
+      return confirm("Are you sure delete this todo?");
+    }
+  </script>
+
+</body>
+</html>

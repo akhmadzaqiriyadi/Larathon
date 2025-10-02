@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Larathon</title>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <div style="text-align: center; margin-top: 100px;">
+        <img src="{{ request.url_for('static', path='larathon.png') }}" alt="Gambar" width="200px">
+        <h1>Welcome to Larathon</h1>
+        <p>This is the default landing page.</p>
+        <a href="/todos">Go to Todos</a>
+
+        <footer>
+            <p>Created by <strong>Hizbullah Najihan</strong></p>
+            <p>
+                <a href="https://github.com/najikh2002" target="_blank">GitHub</a> |
+                <a href="https://linkedin.com/in/hizbullah-najihan" target="_blank">LinkedIn</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

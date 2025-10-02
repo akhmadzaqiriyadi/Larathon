@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Edit Todo</title>
+</head>
+<body>
+  <h1>Edit Todo</h1>
+
+  <form id="editForm">
+    <div>
+      <label for="name">Name</label><br>
+      <input type="text" id="name" name="name" value="{{ todo.name }}" required>
+    </div>
+
+    <div style="margin-top: 8px;">
+      <button type="submit">Update</button>
+      <a href="/todos" style="margin-left: 8px;">← Back to List</a>
+    </div>
+  </form>
+
+  <script>
+    const form = document.getElementById("editForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById("name").value
+      };
+
+      const res = await fetch("/todos/{{ todo.id }}", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        // redirect balik ke daftar
+        window.location.href = "/todos";
+      } else {
+        alert("Update failed!");
+      }
+    });
+  </script>
+</body>
+</html>
