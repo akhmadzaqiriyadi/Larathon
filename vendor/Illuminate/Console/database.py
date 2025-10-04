@@ -16,13 +16,13 @@ def get_engine():
     password = Env.get("DB_PASSWORD", "root")
     host = Env.get("DB_HOST", "127.0.0.1")
     port = Env.get("DB_PORT", "3306")
-    
+
     # Clean up host: remove @ prefix and socket path
     if host.startswith('@'):
         host = host[1:]
     if '/.s.PGSQL' in host:
         host = host.split('/.s.PGSQL')[0]
-    
+
     # Encode password for special characters
     encoded_password = quote_plus(password) if password else ""
 
@@ -42,13 +42,13 @@ def create_database_if_not_exists():
     password = Env.get("DB_PASSWORD", "")
     host = Env.get("DB_HOST", "127.0.0.1")
     port = Env.get("DB_PORT", "3306")
-    
+
     # Clean up host: remove @ prefix and socket path
     if host.startswith('@'):
         host = host[1:]
     if '/.s.PGSQL' in host:
         host = host.split('/.s.PGSQL')[0]
-    
+
     # Encode password for special characters
     encoded_password = quote_plus(password) if password else ""
 
